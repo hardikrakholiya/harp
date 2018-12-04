@@ -283,7 +283,7 @@ CollectiveMapper<String, String, Object, Object>{
             Tensor predictionGroundTruth = this.datasource.createDenseTensor(testGroundTruthPath, 1, ",", daal_Context);
             Service.printTensors("Ground truth", "Neural network predictions: each class probability",
                 "Neural network classification results (first 50 observations):",
-                predictionGroundTruth, predictionResult.get(PredictionResultId.prediction), 50);
+                predictionGroundTruth, predictionResult.get(PredictionResultId.prediction), 60000);
         }//}}}
 
         

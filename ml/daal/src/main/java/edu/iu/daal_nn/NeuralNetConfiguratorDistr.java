@@ -58,8 +58,8 @@ class NeuralNetConfiguratorDistr {
         fullyconnectedLayer2.parameter.setBiasesInitializer(new UniformBatch(context, Float.class, UniformMethod.defaultDense, 0.5, 1));
 
         /* Create fully-connected layer and initialize layer parameters */
-        FullyConnectedBatch fullyconnectedLayer3 = new FullyConnectedBatch(context, Float.class, FullyConnectedMethod.defaultDense, 2);
-       // FullyConnectedBatch fullyconnectedLayer3 = new FullyConnectedBatch(context, Float.class, FullyConnectedMethod.defaultDense, 10);
+        // FullyConnectedBatch fullyconnectedLayer3 = new FullyConnectedBatch(context, Float.class, FullyConnectedMethod.defaultDense, 2);
+       FullyConnectedBatch fullyconnectedLayer3 = new FullyConnectedBatch(context, Float.class, FullyConnectedMethod.defaultDense, 10);
         fullyconnectedLayer3.parameter.setWeightsInitializer(new UniformBatch(context, Float.class, UniformMethod.defaultDense, -0.005, 0.005));
 
         fullyconnectedLayer3.parameter.setBiasesInitializer(new UniformBatch(context, Float.class, UniformMethod.defaultDense, 0, 1));

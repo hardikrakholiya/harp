@@ -43,25 +43,26 @@ class NeuralNetConfiguratorDistr {
         /* Create layers of the neural network */
         /* Create fully-connected layer and initialize layer parameters */
 
-      //FullyConnectedBatch fullyconnectedLayer1 = new FullyConnectedBatch(context, Float.class, FullyConnectedMethod.defaultDense, 20);  //change
+      //  FullyConnectedBatch fullyconnectedLayer1 = new FullyConnectedBatch(context, Float.class, FullyConnectedMethod.defaultDense, 20);  //change
         FullyConnectedBatch fullyconnectedLayer1 = new FullyConnectedBatch(context, Float.class, FullyConnectedMethod.defaultDense, 784);
+
         fullyconnectedLayer1.parameter.setWeightsInitializer(new UniformBatch(context, Float.class, UniformMethod.defaultDense, -0.001, 0.001));
+
         fullyconnectedLayer1.parameter.setBiasesInitializer(new UniformBatch(context, Float.class, UniformMethod.defaultDense, 0, 0.5));
 
         /* Create fully-connected layer and initialize layer parameters */
-        FullyConnectedBatch fullyconnectedLayer2 = new FullyConnectedBatch(context, Float.class, FullyConnectedMethod.defaultDense, 50);
+        FullyConnectedBatch fullyconnectedLayer2 = new FullyConnectedBatch(context, Float.class, FullyConnectedMethod.defaultDense, 40);
+
         fullyconnectedLayer2.parameter.setWeightsInitializer(new UniformBatch(context, Float.class, UniformMethod.defaultDense, 0.5, 1));
+
         fullyconnectedLayer2.parameter.setBiasesInitializer(new UniformBatch(context, Float.class, UniformMethod.defaultDense, 0.5, 1));
 
         /* Create fully-connected layer and initialize layer parameters */
-        FullyConnectedBatch fullyconnectedLayer3 = new FullyConnectedBatch(context, Float.class, FullyConnectedMethod.defaultDense, 25);
-        fullyconnectedLayer3.parameter.setWeightsInitializer(new UniformBatch(context, Float.class, UniformMethod.defaultDense, 0.5, 1));
-        fullyconnectedLayer3.parameter.setBiasesInitializer(new UniformBatch(context, Float.class, UniformMethod.defaultDense, 0.5, 1));
+        // FullyConnectedBatch fullyconnectedLayer3 = new FullyConnectedBatch(context, Float.class, FullyConnectedMethod.defaultDense, 2);
+       FullyConnectedBatch fullyconnectedLayer3 = new FullyConnectedBatch(context, Float.class, FullyConnectedMethod.defaultDense, 10);
+        fullyconnectedLayer3.parameter.setWeightsInitializer(new UniformBatch(context, Float.class, UniformMethod.defaultDense, -0.005, 0.005));
 
-        /* Create fully-connected layer and initialize layer parameters */
-        FullyConnectedBatch fullyconnectedLayer4 = new FullyConnectedBatch(context, Float.class, FullyConnectedMethod.defaultDense, 10);
-        fullyconnectedLayer4.parameter.setWeightsInitializer(new UniformBatch(context, Float.class, UniformMethod.defaultDense, -0.005, 0.005));
-        fullyconnectedLayer4.parameter.setBiasesInitializer(new UniformBatch(context, Float.class, UniformMethod.defaultDense, 0, 1));
+        fullyconnectedLayer3.parameter.setBiasesInitializer(new UniformBatch(context, Float.class, UniformMethod.defaultDense, 0, 1));
 
         /* Create softmax cross-entropy loss layer and initialize layer parameters */
         SoftmaxCrossBatch softmaxCrossEntropyLayer = new SoftmaxCrossBatch(context, Float.class, SoftmaxCrossMethod.defaultDense);
@@ -73,14 +74,10 @@ class NeuralNetConfiguratorDistr {
         long fc1 = topology.add(fullyconnectedLayer1);
         long fc2 = topology.add(fullyconnectedLayer2);
         long fc3 = topology.add(fullyconnectedLayer3);
-        long fc4 = topology.add(fullyconnectedLayer4);
         long sm = topology.add(softmaxCrossEntropyLayer);
-        
         topology.addNext(fc1, fc2);
         topology.addNext(fc2, fc3);
-        topology.addNext(fc3, fc4);
-        topology.addNext(fc4, sm);
-        
+        topology.addNext(fc3, sm);
         return topology;
     }
 }

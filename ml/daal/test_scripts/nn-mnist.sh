@@ -44,7 +44,7 @@ Node=2
 Thd=16
 Mem=110000
 # iteration
-nIterations=10
+nIterations=100
 fileDim=785
 nFeatures=784
 Batch=50
